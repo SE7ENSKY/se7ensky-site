@@ -12,6 +12,7 @@ import Router from 'react-routing/src/Router';
 import fetch from './core/fetch';
 import App from './components/App';
 import ContentPage from './components/ContentPage';
+// import CasePage from './components/CasePage';
 import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';
 
@@ -31,6 +32,13 @@ const router = new Router(on => {
   routes.forEach(route => {
     on(route.path, route.action);
   });
+
+
+  // on('/cases/:id', async (state) => {
+  //   const response = await fetch('/graphql?query={cases(id:"${params.id}"){name,summary}}');
+  //   const data = await response.json();
+  //   return <ContentPage {...data.content} />;
+  // });
 
   on('*', async (state) => {
     const query = `/graphql?query={content(path:"${state.path}"){path,title,content,component}}`;
